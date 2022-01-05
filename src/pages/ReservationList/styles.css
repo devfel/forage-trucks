@@ -1,0 +1,23 @@
+#page-reservation-list {
+    width: 100vw;
+    height: 100vh;
+}
+  
+#page-reservation-list main {
+    margin: 3.2rem auto;
+    width: 90%;
+}
+
+
+
+@media (min-width: 700px) {
+    #page-reservation-list {
+        max-width: 100vw;
+    }
+   
+    #page-reservation-list main {
+        padding: 3.2rem 0;
+        max-width: 740px;
+        margin: 0 auto;
+    }
+}

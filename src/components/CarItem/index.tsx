@@ -1,6 +1,7 @@
 import React from "react";
 
-import whatsappIcon from '../../assets/images/icons/whatsapp.svg'
+//import whatsappIcon from '../../assets/images/icons/whatsapp.svg'
+import reserveIcon from '../../assets/images/icons/reserve.svg'
 
 import "./styles.css"
 
@@ -10,24 +11,22 @@ function CarItem() {
             <header>
                 <img src="https://m.media-amazon.com/images/M/MV5BODUyNzM1NzY0NF5BMl5BanBnXkFtZTYwNjk5ODQ0._V1_UY1200_CR147,0,630,1200_AL_.jpg" alt="Jon Doe" />
                 <div>
-                    <strong>Car Name</strong>
-                    <span>Ano (ID)</span>
+                    <strong>Ford F250</strong>
                 </div>
             </header>
 
             <p>
-                Descriçao lorem ipsun ipsum lorem teste de escrita de texto <br /><br />
-                lorem ipsun ipsum lorem teste de escrita de textolorem ipsun ipsum lorem teste de escrita de texto
+                <strong>Description: </strong> Descriçao lorem ipsun ipsum lorem teste de escrita de texto
             </p>
 
             <footer>
                 <p>
-                    Preço/hora
-                    <strong>USD$ 80.00</strong>
+                    License Plate:
+                    <strong>IG**5</strong>
                 </p>
                 <a type="button">
-                    <img src={whatsappIcon} alt="WhatsApp Icon" />
-                    Entrar em Contato
+                    <img id="reserveIcon" src={reserveIcon} alt="Reserve Icon" />
+                    Reserve Truck
                 </a>
             </footer>
 

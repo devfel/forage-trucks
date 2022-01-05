@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import logoImg from "../../assets/images/logo.png";
 import landingImg from "../../assets/images/landing.svg";
 import studyIcon from "../../assets/images/icons/study.svg";
-import giveClassesIcon from "../../assets/images/icons/give-classes.svg";
+import pickupIcon from "../../assets/images/icons/pickup.svg";
 import purpleHeartIcon from "../../assets/images/icons/purple-heart.svg";
 import './styles.css';
 
@@ -20,11 +20,11 @@ function Landing() {
 
                 <div className='buttons-container'>
                     <Link to="/reserve" className='reserve-car'>
-                        <img src={studyIcon} alt="Reserve Button" /> B1Res(CNstudy)
+                        <img src={pickupIcon} alt="Reserve Truck Button" /> Reserve Truck
                     </Link>
 
                     <Link to="/reservation-list" className='list-reservations'>
-                        <img src={giveClassesIcon} alt="Reserve Button" /> B2List(giveClasses)
+                        <img src={studyIcon} alt="List Reservations Button" /> List Reservations
                     </Link>
                 </div>
 
