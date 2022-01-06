@@ -58,16 +58,7 @@
     padding: 0 1.6rem;
     font: 1.6 Archivo
 }
-#search-teachers .input-block:focus-within::after {
-    width: calc(100% - 3.2rem);
-    height: 4px;
-    content: '';
-    background: var(--color-primary-light);
-    position: absolute;
-    left: 1.6rem;
-    right: 1.6rem;
-    bottom: 0;
-}
+
 /* Temporary End*/
 
 @media (min-width: 700px) {
@@ -75,9 +66,9 @@
         max-width: 100vw;
     }
 
-    #search-teachers {
+    #search-teachers{
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: 1fr 2fr;
         column-gap: 16px;
         position: absolute;
         bottom: -28px;

@@ -1,30 +1,58 @@
 import React from "react";
 
-//import whatsappIcon from '../../assets/images/icons/whatsapp.svg'
 import reserveIcon from '../../assets/images/icons/reserve.svg'
+import api from "../../services/api";
 
 import "./styles.css"
 
-function CarItem() {
+export interface Vehicle {
+    id: number;
+    avatar: string;
+    bio: string;
+    name: string;
+    stringDate: number;
+    nameSelected: string;
+}
+
+
+const CarItem: React.FunctionComponent<Vehicle> = ({ id, avatar, bio, name, stringDate, nameSelected }) => {
+
+    function createNewReservation() {
+        api.post('reservations', {
+            "date": stringDate,
+            "period": "morning",
+            "staff": nameSelected,
+            "vehicle_id": id,
+        })
+        console.log("CRIANDO NOVA RESERVA");
+        console.log(stringDate)
+        //REFRESH PAGE TO HIDE ITEM RESERVED.
+        window.location.reload();
+
+        //MENSAGEM DE AVISO DE RESERVA CONFIRMADA.
+        alert("Vehicle Reserved Successfully!")
+    }
+
+
     return (
         <article className="car-item">
             <header>
-                <img src="https://m.media-amazon.com/images/M/MV5BODUyNzM1NzY0NF5BMl5BanBnXkFtZTYwNjk5ODQ0._V1_UY1200_CR147,0,630,1200_AL_.jpg" alt="Jon Doe" />
+                <img src={avatar} alt={name} />
                 <div>
-                    <strong>Ford F250</strong>
+                    <strong>{name}</strong>
                 </div>
             </header>
 
             <p>
-                <strong>Description: </strong> Descriçao lorem ipsun ipsum lorem teste de escrita de texto
+                <strong>Description: </strong> {bio}
             </p>
 
+
             <footer>
-                <p>
-                    License Plate:
-                    <strong>IG**5</strong>
-                </p>
-                <a type="button">
+
+                <strong>License Plate: {name}</strong>
+
+                <a onClick={createNewReservation} type="button">
                     <img id="reserveIcon" src={reserveIcon} alt="Reserve Icon" />
                     Reserve Truck
                 </a>
