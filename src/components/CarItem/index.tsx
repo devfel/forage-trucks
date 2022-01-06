@@ -29,15 +29,15 @@ const CarItem: React.FunctionComponent<Vehicle> = ({ id, avatar, bio, name, stri
         //REFRESH PAGE TO HIDE ITEM RESERVED.
         window.location.reload();
 
-        //MENSAGEM DE AVISO DE RESERVA CONFIRMADA.
+        //CONFIRMATION OF RESERVATION MESSAGE
         alert("Vehicle Reserved Successfully!")
     }
 
 
     return (
         <article className="car-item">
+            <img className="car-img" src={avatar} alt={name} />
             <header>
-                <img src={avatar} alt={name} />
                 <div>
                     <strong>{name}</strong>
                 </div>
@@ -49,9 +49,7 @@ const CarItem: React.FunctionComponent<Vehicle> = ({ id, avatar, bio, name, stri
 
 
             <footer>
-
-                <strong>License Plate: {name}</strong>
-
+                <strong> {new Date(stringDate).toUTCString().split(' ').slice(0, 4).join(' ')} </strong>
                 <a onClick={createNewReservation} type="button">
                     <img id="reserveIcon" src={reserveIcon} alt="Reserve Icon" />
                     Reserve Truck

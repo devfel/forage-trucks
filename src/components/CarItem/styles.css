@@ -4,6 +4,7 @@
     border-radius: 0.8rem;
     margin-top: 2.4rem;
     overflow: hidden;
+    position: relative;
   }
   
 .car-item header {
@@ -12,10 +13,13 @@
     align-items: center;
 }
 
-.car-item header img {
-    width: 8rem;
-    height: 8rem;
-    border-radius: 50%;
+.car-item .car-img {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  width: 130px;
+  height: 130px;
+  border-radius: 10%;
 }
 
 .car-item header div {
@@ -23,7 +27,7 @@
 }
 
 .car-item header div strong {
-    font: 700 2.4rem Archivo;
+    font: 700 3.4rem Archivo;
     display: block;
     color: var(--color-text-title);
 }
@@ -142,5 +146,14 @@
   
     .car-item footer button img {
       margin-right: 1.6rem;
+    }
+
+    .car-item .car-img {
+      position: absolute;
+      right: 1rem;
+      top: 1rem;
+      width: 150px;
+      height: 150px;
+      border-radius: 10%;
     }
 }
