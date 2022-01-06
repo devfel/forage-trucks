@@ -36,7 +36,7 @@ const CarItem: React.FunctionComponent<Vehicle> = ({ id, avatar, bio, name, stri
 
     return (
         <article className="car-item">
-            <img className="car-img" src={avatar} alt={name} />
+            <img className="car-img" src={`/images/${avatar}.png`} alt={name} />
             <header>
                 <div>
                     <strong>{name}</strong>
