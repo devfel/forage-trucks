@@ -9,5 +9,3 @@ function App() {
 }
 
 export default App;
-
-// Aula 2: https://www.youtube.com/watch?v=xK8d5tLptHY
