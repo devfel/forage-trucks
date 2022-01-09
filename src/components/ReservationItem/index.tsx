@@ -16,11 +16,8 @@ export interface Reservation {
 }
 
 const ReservationItem: React.FunctionComponent<Reservation> = ({ id, date, staff, created_at, vehicle_id, name, avatar, bio }) => {
-    const dReserved = new Date(date).toUTCString().split(' ').slice(0, 4).join(' ');
+    const dReserved = new Date(+date).toUTCString().split(' ').slice(0, 4).join(' ');
     const dCreated = new Date(created_at).toLocaleString();
-
-
-
 
 
     return (
