@@ -23,7 +23,7 @@ const ReservationItem: React.FunctionComponent<Reservation> = ({ id, date, staff
     return (
         <article className="reservation-item">
 
-            <img src={`/images/${avatar}.png`} alt={name} />
+            <img src={`/forage-trucks/images/${avatar}.png`} alt={name} />
             <header>
                 <div>
                     <strong>{staff}</strong>
