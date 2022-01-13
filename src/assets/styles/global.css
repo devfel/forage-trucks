@@ -4,7 +4,7 @@
     --color-background: #F0F0F7;
     --color-primary-lighter: #2515ff;
     --color-primary-light: #0c00b9;
-    --color-primary: #f8f8f8;
+    --color-primary: #fffce9;
     --color-primary-dark: #774DD6;
     --color-primary-darker: #6842C2;
     --color-secundary: #f56e00;
@@ -17,7 +17,7 @@
     --color-line-in-white: #E6E6F0;
     --color-input-background: #F8F8FC;
     --color-button-text: #FFFFFF;
-    --color-box-base: #FFFFFF;
+    --color-box-base: #fffce9;
     --color-box-footer: #FAFAFC;
 }
 
