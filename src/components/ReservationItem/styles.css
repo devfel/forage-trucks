@@ -4,20 +4,24 @@
     border-radius: 0.8rem;
     margin-top: 1.4rem;
     overflow: hidden;
+    display: flex;
+    justify-content: space-between;
     position: relative;
   }
   
-.reservation-item header {
+.reservation-item .text-information header {
     padding: 1.2rem 0rem;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 2.4rem;
 }
 
 .reservation-item img {
+    align-self: center;
     width: 8rem;
     height: 8rem;
     border-radius: 50%;
-    position: absolute;
     right: 1rem;
     bottom: 1rem;
     width: 80px;
@@ -25,49 +29,68 @@
     border-radius: 10%;
 }
 
-.reservation-item header div {
-    margin-left: 2.4rem;
-}
-
-.reservation-item header div strong {
+.reservation-item .text-information header strong {
     font: 700 2.0rem Archivo;
     display: block;
     color: var(--color-text-title);
 }
 
-.reservation-item header div span {
+.reservation-item .text-information header span {
     font-size: 1.4rem;
     display: block;
     margin-top: 0;
 }
 
-.reservation-item > p {
+.reservation-item .text-information > p {
     padding: 0 2rem;
     font-size: 1.4rem;
     line-height: 1.8rem;
 }
 
-.reservation-item > p:last-child  {
+.reservation-item .text-information > p:last-child  {
   margin-bottom: 1rem;
 }
 
-  
+@media (max-width: 550px) {
+  .reservation-item {
+    flex-direction: column;
+  }
+
+  .reservation-item img {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 20px;
+  }
+}
+
+
+@media (min-width: 550px) {
+  .reservation-item img {
+    width: 120px;
+    height: 120px;
+    margin-right: 20px;
+  }
+}
+
 @media (min-width: 700px) {
-    .reservation-item header,
-    .reservation-item footer {
+    .reservation-item .text-information header,
+    .reservation-item .text-information footer {
       padding: 1.2rem 2.0rem;
     }
   
-    .reservation-item > p {
+    .reservation-item .text-information > p {
       padding: 0 4.4rem;
     }
 
-    .reservation-item  img {
+    .reservation-item img {
       position: absolute;
       right: 1rem;
       top: 1rem;
       width: 150px;
       height: 150px;
       border-radius: 10%;
+      margin: 0;
   }
 }
+
+

@@ -37,24 +37,25 @@ const CarItem: React.FunctionComponent<Vehicle> = ({ id, avatar, bio, name, stri
     return (
         <article className="car-item">
             <img className="car-img" src={`/forage-trucks/images/${avatar}.png`} alt={name} />
-            <header>
-                <div>
+            <div className="text-info">
+                <header>
                     <strong>{name}</strong>
-                </div>
-            </header>
+                </header>
 
-            <p>
-                <strong>Description: </strong> {bio}
-            </p>
+                <p>
+                    <strong>Description: </strong> {bio}
+                </p>
+            </div>
 
 
             <footer>
                 <strong> {new Date(stringDate).toUTCString().split(' ').slice(0, 4).join(' ')} </strong>
                 <a onClick={createNewReservation} type="button">
                     <img id="reserveIcon" src={reserveIcon} alt="Reserve Icon" />
-                    Reserve Truck
+                    Confirm Truck
                 </a>
             </footer>
+
 
         </article>
     );

@@ -22,20 +22,20 @@ const ReservationItem: React.FunctionComponent<Reservation> = ({ id, date, staff
 
     return (
         <article className="reservation-item">
-
-            <img src={`/forage-trucks/images/${avatar}.png`} alt={name} />
-            <header>
-                <div>
+            <div className="text-information">
+                <header>
                     <strong>{staff}</strong>
                     <span>Reservation ID: {id}</span>
                     <span>Date: {dReserved}</span>
                     <span>Reservation Created at: {dCreated} GMT</span>
-                </div>
-            </header>
+                </header>
 
-            <p>Vehicle ID: {vehicle_id}</p>
-            <p>Vehicle Name: {name}</p>
-            <p>Vehicle Description: {bio}</p>
+                <p>Vehicle ID: {vehicle_id}</p>
+                <p>Vehicle Name: {name}</p>
+                <p>Vehicle Description: {bio}</p>
+            </div>
+
+            <img src={`/forage-trucks/images/${avatar}.png`} alt={name} />
         </article>
     );
 }

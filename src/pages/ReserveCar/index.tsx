@@ -38,7 +38,7 @@ function ReserveCar() {
         <div id="page-reserve-car" className="container">
             <PageHeader title="These are the registered cars available.">
 
-                <form id="search-teachers">
+                <form id="search-trucks">
                     <div className="input-block">
                         <label htmlFor="subjectDate">Select a date: </label>
                         {// <input type="date" id="subjectDate" value={dateSelected} onChange={(e) => { searchAvailableVehicles(e) }} />
@@ -61,8 +61,6 @@ function ReserveCar() {
                         return <CarItem key={vehicle.id} id={vehicle.id} name={vehicle.name} avatar={vehicle.avatar} bio={vehicle.bio} stringDate={stringDate} nameSelected={nameSelected} />;
                     })
                 }
-
-
             </main>
 
         </div>

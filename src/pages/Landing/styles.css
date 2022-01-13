@@ -46,7 +46,8 @@
     height: 8.4rem;
     border-radius: 0.8rem;
     font: 700 1.7rem Archivo;
-    
+    padding: 1rem;
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -96,6 +97,18 @@
   .total-reservations img {
     margin-left: 0.8rem;
   }
+
+@media (max-width: 475px) {
+  .buttons-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+  }
+
+  .buttons-container a {
+    width: 100%;
+  }
+}
 
 /*
 @media (min-width: 800px) {
