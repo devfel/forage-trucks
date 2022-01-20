@@ -24,8 +24,6 @@ const CarItem: React.FunctionComponent<Vehicle> = ({ id, avatar, bio, name, stri
             "staff": nameSelected,
             "vehicle_id": id,
         })
-        console.log("CRIANDO NOVA RESERVA");
-        console.log(stringDate)
         //REFRESH PAGE TO HIDE ITEM RESERVED.
         window.location.reload();
 
