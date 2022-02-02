@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/forage-trucks/static/css/main.f402889f.chunk.css",
-    "main.js": "/forage-trucks/static/js/main.7e3cca49.chunk.js",
-    "main.js.map": "/forage-trucks/static/js/main.7e3cca49.chunk.js.map",
+    "main.css": "/forage-trucks/static/css/main.2c4457a6.chunk.css",
+    "main.js": "/forage-trucks/static/js/main.26536970.chunk.js",
+    "main.js.map": "/forage-trucks/static/js/main.26536970.chunk.js.map",
     "runtime-main.js": "/forage-trucks/static/js/runtime-main.27bf1ca4.js",
     "runtime-main.js.map": "/forage-trucks/static/js/runtime-main.27bf1ca4.js.map",
     "static/js/2.f538f287.chunk.js": "/forage-trucks/static/js/2.f538f287.chunk.js",
     "static/js/2.f538f287.chunk.js.map": "/forage-trucks/static/js/2.f538f287.chunk.js.map",
     "index.html": "/forage-trucks/index.html",
-    "static/css/main.f402889f.chunk.css.map": "/forage-trucks/static/css/main.f402889f.chunk.css.map",
+    "static/css/main.2c4457a6.chunk.css.map": "/forage-trucks/static/css/main.2c4457a6.chunk.css.map",
     "static/js/2.f538f287.chunk.js.LICENSE.txt": "/forage-trucks/static/js/2.f538f287.chunk.js.LICENSE.txt",
     "static/media/back.7519e694.svg": "/forage-trucks/static/media/back.7519e694.svg",
     "static/media/landing.ebae2e8c.svg": "/forage-trucks/static/media/landing.ebae2e8c.svg",
@@ -21,7 +21,7 @@
   "entrypoints": [
     "static/js/runtime-main.27bf1ca4.js",
     "static/js/2.f538f287.chunk.js",
-    "static/css/main.f402889f.chunk.css",
-    "static/js/main.7e3cca49.chunk.js"
+    "static/css/main.2c4457a6.chunk.css",
+    "static/js/main.26536970.chunk.js"
   ]
 }
