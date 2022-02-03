@@ -32,7 +32,6 @@ function ReservationList() {
                         return <ReservationItem key={reservation.id} id={reservation.id} date={reservation.date} staff={reservation.staff} created_at={reservation.created_at} vehicle_id={reservation.vehicle_id} name={reservation.name} avatar={reservation.avatar} bio={reservation.bio} />
                     })
                 }
-
             </main>
         </div>
     )

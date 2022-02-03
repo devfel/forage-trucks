@@ -66,7 +66,7 @@
     display: block;
 }
 
-.car-item footer a {
+.car-item footer button {
     min-width: 15rem;
     width: 100%;
     height: 5.6rem;
@@ -84,7 +84,7 @@
     text-decoration: none;
 }
 
-.car-item footer a:hover {
+.car-item footer button:hover {
     background: var(--color-secundary-dark);
 }
 
@@ -134,7 +134,7 @@
       justify-content: flex-start;
     }
 
-    .car-item footer a {
+    .car-item footer button {
       width: 20rem;
     }
     

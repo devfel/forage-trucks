@@ -1,13 +1,10 @@
-import { Console } from 'console';
-import React, { useEffect, useState, FormEvent } from 'react';
+import React, { useEffect, useState } from 'react';
 import CarItem, { Vehicle } from "../../components/CarItem";
 import PageHeader from "../../components/PageHeader";
 import api from '../../services/api';
 import loading2 from "../../assets/images/loading2.gif";
 
 import "./styles.css"
-
-
 
 function ReserveCar() {
     const today = new Date();
@@ -38,7 +35,7 @@ function ReserveCar() {
                 setAvailableVehicles(response.data);
                 setLoading(false);
             });
-    }, [dateSelected]);
+    }, [stringDate]);
 
     return (
         <div id="page-reserve-car" className="container">

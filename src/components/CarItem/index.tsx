@@ -3,7 +3,6 @@ import React from "react";
 import reserveIcon from '../../assets/images/icons/reserve.svg'
 import api from "../../services/api";
 import "./styles.css"
-import { useState } from 'react';
 
 export interface Vehicle {
     id: number;
@@ -15,11 +14,6 @@ export interface Vehicle {
 }
 
 const CarItem: React.FunctionComponent<Vehicle> = ({ id, avatar, bio, name, stringDate, nameSelected }) => {
-    const [modalNameError, setModalNameError] = useState(false);
-    const toggleModal = () => {
-        setModalNameError(!modalNameError);
-    };
-
     async function createNewReservation() {
         if (!nameSelected) {
             alert("Error: Invalid name, please insert you name.");
@@ -58,10 +52,10 @@ const CarItem: React.FunctionComponent<Vehicle> = ({ id, avatar, bio, name, stri
 
 
             <footer>
-                <a onClick={createNewReservation} type="button">
+                <button onClick={createNewReservation} type="button">
                     <img id="reserveIcon" src={reserveIcon} alt="Reserve Icon" />
                     Confirm Truck
-                </a>
+                </button>
                 <strong> {new Date(stringDate).toUTCString().split(' ').slice(0, 4).join(' ')} </strong>
             </footer>
         </article>

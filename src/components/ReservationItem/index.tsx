@@ -1,7 +1,5 @@
 import React from "react";
 
-import reserveIcon from '../../assets/images/icons/reserve.svg'
-
 import "./styles.css"
 
 export interface Reservation {
