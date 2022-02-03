@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'
+import loading2 from "../../assets/images/loading2.gif";
 import logoImg from "../../assets/images/logo.png";
 import landingImg from "../../assets/images/landing.svg";
 import studyIcon from "../../assets/images/icons/study.svg";
@@ -10,12 +11,15 @@ import api from '../../services/api';
 
 function Landing() {
     const [totalReservations, setTotalReservations] = useState(0);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         api.get('totalReservations').then(response => {
+            setLoading(true);
             const total = response.data;
             setTotalReservations(total);
-        })
+            setLoading(false);
+        });
     }, []);
 
     return (
@@ -39,7 +43,7 @@ function Landing() {
                 </div>
 
                 <span className='total-reservations'>
-                    Total of {totalReservations} reservations done.
+                    Total of {loading ? (<img src={loading2} style={{ marginRight: "10px" }} width="25px" alt="Loading" />) : totalReservations} reservations done.
                     <img src={purpleHeartIcon} alt="reservations done purple heart" />
                 </span>
             </div>

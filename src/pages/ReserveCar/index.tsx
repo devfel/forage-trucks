@@ -3,6 +3,7 @@ import React, { useEffect, useState, FormEvent } from 'react';
 import CarItem, { Vehicle } from "../../components/CarItem";
 import PageHeader from "../../components/PageHeader";
 import api from '../../services/api';
+import loading2 from "../../assets/images/loading2.gif";
 
 import "./styles.css"
 
@@ -20,6 +21,7 @@ function ReserveCar() {
         const initialValue = JSON.parse(saved as any);
         return initialValue || "";
     });
+    const [loading, setLoading] = useState(true);
 
     const stringDate = Date.parse(dateSelected);
 
@@ -31,7 +33,11 @@ function ReserveCar() {
     // Whenever the date changes this function searchs for Vehicles avaible on the DB
     useEffect(() => {
         api.get('vehicles', { params: { date: stringDate } })
-            .then(response => { setAvailableVehicles(response.data); });
+            .then(response => {
+                setLoading(true);
+                setAvailableVehicles(response.data);
+                setLoading(false);
+            });
     }, [dateSelected]);
 
     return (
@@ -55,11 +61,14 @@ function ReserveCar() {
 
             </PageHeader>
 
+
             <main>
+                {loading ? (<div><img src={loading2} width="70px" alt="Loading" />{"Loading Data. Please Wait."}</div>) : null}
                 {
-                    availableVehicles.map((vehicle: Vehicle) => {
-                        return <CarItem key={vehicle.id} id={vehicle.id} name={vehicle.name} avatar={vehicle.avatar} bio={vehicle.bio} stringDate={stringDate} nameSelected={nameSelected} />;
-                    })
+                    !loading && availableVehicles.length === 0 ? (<span>Sorry, NO Vehicles Available for the Selected Date.</span>) :
+                        availableVehicles.map((vehicle: Vehicle) => {
+                            return <CarItem key={vehicle.id} id={vehicle.id} name={vehicle.name} avatar={vehicle.avatar} bio={vehicle.bio} stringDate={stringDate} nameSelected={nameSelected} />;
+                        })
                 }
             </main>
 

@@ -25,12 +25,10 @@ const ReservationItem: React.FunctionComponent<Reservation> = ({ id, date, staff
             <div className="text-information">
                 <header>
                     <strong>{staff}</strong>
-                    <span>Reservation ID: {id}</span>
-                    <span>Date: {dReserved}</span>
+                    <span>Date: <b>{dReserved}</b></span>
                     <span>Reservation Created at: {dCreated} GMT</span>
                 </header>
 
-                <p>Vehicle ID: {vehicle_id}</p>
                 <p>Vehicle Name: {name}</p>
                 <p>Vehicle Description: {bio}</p>
             </div>

@@ -19,13 +19,10 @@
 
 .reservation-item img {
     align-self: center;
-    width: 8rem;
-    height: 8rem;
-    border-radius: 50%;
+    width: 17rem;
+    height: 17rem;
     right: 1rem;
     bottom: 1rem;
-    width: 80px;
-    height: 80px;
     border-radius: 10%;
 }
 
@@ -56,18 +53,12 @@
     flex-direction: column;
   }
 
-  .reservation-item img {
-    width: 150px;
-    height: 150px;
-    margin-bottom: 20px;
-  }
 }
-
 
 @media (min-width: 550px) {
   .reservation-item img {
-    width: 120px;
-    height: 120px;
+    width: 11.5rem;
+    height: 11.5rem;
     margin-right: 20px;
   }
 }
@@ -86,8 +77,8 @@
       position: absolute;
       right: 1rem;
       top: 1rem;
-      width: 150px;
-      height: 150px;
+      width: 11.5rem;
+      height: 11.5rem;
       border-radius: 10%;
       margin: 0;
   }
