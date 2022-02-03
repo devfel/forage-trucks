@@ -105,6 +105,11 @@
       gap: 1.5rem;
   }
 
+  #logo-container img {
+    height: 18rem;
+    max-width: 100%;
+  }
+
   .buttons-container a {
     width: 100%;
   }
