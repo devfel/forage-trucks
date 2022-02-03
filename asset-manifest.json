@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/forage-trucks/static/css/main.2c4457a6.chunk.css",
-    "main.js": "/forage-trucks/static/js/main.4ba3fb96.chunk.js",
-    "main.js.map": "/forage-trucks/static/js/main.4ba3fb96.chunk.js.map",
+    "main.css": "/forage-trucks/static/css/main.164d15ea.chunk.css",
+    "main.js": "/forage-trucks/static/js/main.3e60bcdb.chunk.js",
+    "main.js.map": "/forage-trucks/static/js/main.3e60bcdb.chunk.js.map",
     "runtime-main.js": "/forage-trucks/static/js/runtime-main.27bf1ca4.js",
     "runtime-main.js.map": "/forage-trucks/static/js/runtime-main.27bf1ca4.js.map",
-    "static/js/2.f538f287.chunk.js": "/forage-trucks/static/js/2.f538f287.chunk.js",
-    "static/js/2.f538f287.chunk.js.map": "/forage-trucks/static/js/2.f538f287.chunk.js.map",
+    "static/js/2.843017d8.chunk.js": "/forage-trucks/static/js/2.843017d8.chunk.js",
+    "static/js/2.843017d8.chunk.js.map": "/forage-trucks/static/js/2.843017d8.chunk.js.map",
     "index.html": "/forage-trucks/index.html",
-    "static/css/main.2c4457a6.chunk.css.map": "/forage-trucks/static/css/main.2c4457a6.chunk.css.map",
-    "static/js/2.f538f287.chunk.js.LICENSE.txt": "/forage-trucks/static/js/2.f538f287.chunk.js.LICENSE.txt",
+    "static/css/main.164d15ea.chunk.css.map": "/forage-trucks/static/css/main.164d15ea.chunk.css.map",
+    "static/js/2.843017d8.chunk.js.LICENSE.txt": "/forage-trucks/static/js/2.843017d8.chunk.js.LICENSE.txt",
     "static/media/back.7519e694.svg": "/forage-trucks/static/media/back.7519e694.svg",
     "static/media/landing.ebae2e8c.svg": "/forage-trucks/static/media/landing.ebae2e8c.svg",
-    "static/media/logo.528af4db.png": "/forage-trucks/static/media/logo.528af4db.png",
+    "static/media/loading2.c7d9f081.gif": "/forage-trucks/static/media/loading2.c7d9f081.gif",
     "static/media/pickup.82f41c2a.svg": "/forage-trucks/static/media/pickup.82f41c2a.svg",
     "static/media/purple-heart.cf1a5ee2.svg": "/forage-trucks/static/media/purple-heart.cf1a5ee2.svg",
     "static/media/reserve.3ed7175d.svg": "/forage-trucks/static/media/reserve.3ed7175d.svg",
@@ -20,8 +20,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.27bf1ca4.js",
-    "static/js/2.f538f287.chunk.js",
-    "static/css/main.2c4457a6.chunk.css",
-    "static/js/main.4ba3fb96.chunk.js"
+    "static/js/2.843017d8.chunk.js",
+    "static/css/main.164d15ea.chunk.css",
+    "static/js/main.3e60bcdb.chunk.js"
   ]
 }
