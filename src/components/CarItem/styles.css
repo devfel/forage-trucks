@@ -1,14 +1,14 @@
 .car-item {
-    background: var(--color-box-base);
+    background: var(--color-car-reserve-box);
     border: 1px solid var(--color-line-in-white);
     border-radius: 0.8rem;
-    margin-top: 2.4rem;
+    margin-top: 3.4rem;
     overflow: hidden;
     position: relative;
     display: flex;
     flex-direction: column;
   }
-  
+
 .car-item header {
     padding: 3.2rem 2rem;
     display: flex;
@@ -50,7 +50,7 @@
 
 .car-item footer {
     padding: 3.2rem 2rem;
-    background: var(--color-box-footer);
+    background: var(--color-car-reserve-box);
     border-top: 1px solid var(--color-line-in-white);
     margin-top: 3.2rem;
     display: flex;
@@ -131,6 +131,7 @@
     .car-item footer {
       padding: 1.8rem 2rem;
       flex-direction: row;
+      justify-content: flex-start;
     }
 
     .car-item footer a {

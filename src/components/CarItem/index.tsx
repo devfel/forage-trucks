@@ -3,7 +3,6 @@ import React from "react";
 import reserveIcon from '../../assets/images/icons/reserve.svg'
 import api from "../../services/api";
 import "./styles.css"
-import "./modal.css";
 import { useState } from 'react';
 
 export interface Vehicle {
@@ -59,11 +58,11 @@ const CarItem: React.FunctionComponent<Vehicle> = ({ id, avatar, bio, name, stri
 
 
             <footer>
-                <strong> {new Date(stringDate).toUTCString().split(' ').slice(0, 4).join(' ')} </strong>
                 <a onClick={createNewReservation} type="button">
                     <img id="reserveIcon" src={reserveIcon} alt="Reserve Icon" />
                     Confirm Truck
                 </a>
+                <strong> {new Date(stringDate).toUTCString().split(' ').slice(0, 4).join(' ')} </strong>
             </footer>
         </article>
     );
