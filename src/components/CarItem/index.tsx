@@ -17,18 +17,22 @@ export interface Vehicle {
 
 const CarItem: React.FunctionComponent<Vehicle> = ({ id, avatar, bio, name, stringDate, nameSelected }) => {
 
-    function createNewReservation() {
-        api.post('reservations', {
-            "date": stringDate,
-            "period": "morning",
-            "staff": nameSelected,
-            "vehicle_id": id,
-        })
+    async function createNewReservation() {
+        try {
+            await api.post('reservations', {
+                "date": stringDate,
+                "period": "morning",
+                "staff": nameSelected,
+                "vehicle_id": id,
+            });
+            //CONFIRMATION OF RESERVATION MESSAGE
+            alert("Vehicle Reserved Successfully!");
+
+        } catch (error) {
+            alert("ERROR: " + error);
+        }
         //REFRESH PAGE TO HIDE ITEM RESERVED.
         window.location.reload();
-
-        //CONFIRMATION OF RESERVATION MESSAGE
-        alert("Vehicle Reserved Successfully!")
     }
 
 

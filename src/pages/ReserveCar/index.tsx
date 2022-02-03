@@ -65,7 +65,7 @@ function ReserveCar() {
             <main>
                 {loading ? (<div><img src={loading2} width="70px" alt="Loading" />{"Loading Data. Please Wait."}</div>) : null}
                 {
-                    !loading && availableVehicles.length === 0 ? (<span>Sorry, NO Vehicles Available for the Selected Date.</span>) :
+                    !loading && availableVehicles.length === 0 ? (<span>Sorry, there are <b>no</b> vehicles available for the selected date.</span>) :
                         availableVehicles.map((vehicle: Vehicle) => {
                             return <CarItem key={vehicle.id} id={vehicle.id} name={vehicle.name} avatar={vehicle.avatar} bio={vehicle.bio} stringDate={stringDate} nameSelected={nameSelected} />;
                         })
