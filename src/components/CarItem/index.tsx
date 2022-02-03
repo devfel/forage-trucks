@@ -2,39 +2,47 @@ import React from "react";
 
 import reserveIcon from '../../assets/images/icons/reserve.svg'
 import api from "../../services/api";
-
 import "./styles.css"
+import "./modal.css";
+import { useState } from 'react';
 
 export interface Vehicle {
     id: number;
     avatar: string;
     bio: string;
-    name: string;
+    name: string; //Car Name.
     stringDate: number;
-    nameSelected: string;
+    nameSelected: string; //Staff Reserving the Vehicle.
 }
 
-
 const CarItem: React.FunctionComponent<Vehicle> = ({ id, avatar, bio, name, stringDate, nameSelected }) => {
+    const [modalNameError, setModalNameError] = useState(false);
+    const toggleModal = () => {
+        setModalNameError(!modalNameError);
+    };
 
     async function createNewReservation() {
-        try {
-            await api.post('reservations', {
-                "date": stringDate,
-                "period": "morning",
-                "staff": nameSelected,
-                "vehicle_id": id,
-            });
-            //CONFIRMATION OF RESERVATION MESSAGE
-            alert("Vehicle Reserved Successfully!");
+        if (!nameSelected) {
+            alert("Error: Invalid name, please insert you name.");
+        } else {
+            try {
+                await api.post('reservations', {
+                    "date": stringDate,
+                    "period": "morning",
+                    "staff": nameSelected,
+                    "vehicle_id": id,
+                });
 
-        } catch (error) {
-            alert("ERROR: " + error);
+                //CONFIRMATION OF RESERVATION MESSAGE
+                alert("Success: Vehicle Reserved Successfully.")
+            } catch (error) {
+                //CONFIRMATION OF RESERVATION MESSAGE
+                alert("Error: " + error)
+            }
+            //REFRESH PAGE TO HIDE ITEM RESERVED.
+            window.location.reload();
         }
-        //REFRESH PAGE TO HIDE ITEM RESERVED.
-        window.location.reload();
     }
-
 
     return (
         <article className="car-item">
@@ -57,8 +65,6 @@ const CarItem: React.FunctionComponent<Vehicle> = ({ id, avatar, bio, name, stri
                     Confirm Truck
                 </a>
             </footer>
-
-
         </article>
     );
 }

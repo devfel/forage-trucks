@@ -28,7 +28,7 @@ function ReservationList() {
             <main>
                 {loading ? (<div><img src={loading2} width="70px" alt="Loading" />{"Loading Data. Please Wait."}</div>) : null}
                 {
-                    reservationsList.map((reservation: Reservation) => {
+                    reservationsList.slice(0).reverse().map((reservation: Reservation) => {
                         return <ReservationItem key={reservation.id} id={reservation.id} date={reservation.date} staff={reservation.staff} created_at={reservation.created_at} vehicle_id={reservation.vehicle_id} name={reservation.name} avatar={reservation.avatar} bio={reservation.bio} />
                     })
                 }
