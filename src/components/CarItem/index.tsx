@@ -16,7 +16,7 @@ export interface Vehicle {
 const CarItem: React.FunctionComponent<Vehicle> = ({ id, avatar, bio, name, stringDate, nameSelected }) => {
     async function createNewReservation() {
         if (!nameSelected) {
-            alert("Error: Invalid name, please insert you name.");
+            alert("Error: Invalid name, please insert your name.");
         } else {
             try {
                 await api.post('reservations', {
