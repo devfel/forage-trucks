@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import CarItem, { Vehicle } from "../../components/CarItem";
+import CarReservedItem, { VehicleReservation } from "../../components/CarReservedItem";
 import PageHeader from "../../components/PageHeader";
 import api from '../../services/api';
 import loading2 from "../../assets/images/loading2.gif";
@@ -11,6 +12,8 @@ function ReserveCar() {
     const formatedToday = (today.getFullYear() + "-" + (today.getMonth() + 1).toLocaleString('en-US', { minimumIntegerDigits: 2, useGrouping: false }) + "-" + today.getDate().toLocaleString('en-US', { minimumIntegerDigits: 2, useGrouping: false }));
 
     const [availableVehicles, setAvailableVehicles] = useState([]);
+    const [reservationsList, setReservationsList] = useState<any[]>([]);
+
     const [dateSelected, setDateSelected] = useState(formatedToday);
     const [nameSelected, setNameSelected] = useState(() => {
         // getting stored value
@@ -37,6 +40,17 @@ function ReserveCar() {
             });
     }, [stringDate]);
 
+    // Whenever the date changes this function searchs for Vehicles Reserved
+    useEffect(() => {
+        api.get('reservations')
+            .then(response => {
+                setLoading(true);
+                setReservationsList(response.data);
+                setLoading(false);
+            });
+    }, [stringDate]);
+    const reservationsListOnDate = reservationsList.filter(el => el.date === stringDate + "");
+
     return (
         <div id="page-reserve-car" className="container">
             <PageHeader title="These are the registered cars available.">
@@ -62,10 +76,16 @@ function ReserveCar() {
             <main>
                 {loading ? (<div><img src={loading2} width="70px" alt="Loading" />{"Loading Data. Please Wait."}</div>) : null}
                 {
-                    !loading && availableVehicles.length === 0 ? (<span>Sorry, there are <b>no</b> vehicles available for the selected date.</span>) :
-                        availableVehicles.map((vehicle: Vehicle) => {
-                            return <CarItem key={vehicle.id} id={vehicle.id} name={vehicle.name} avatar={vehicle.avatar} bio={vehicle.bio} stringDate={stringDate} nameSelected={nameSelected} />;
-                        })
+                    availableVehicles.map((vehicle: Vehicle) => {
+                        return <CarItem key={vehicle.id} id={vehicle.id} name={vehicle.name} avatar={vehicle.avatar} bio={vehicle.bio} stringDate={stringDate} nameSelected={nameSelected} />;
+                    })
+
+                }
+                {
+                    reservationsListOnDate.map((vehicle: VehicleReservation) => {
+                        return <CarReservedItem key={vehicle.id} staff={vehicle.staff} id={vehicle.id} name={vehicle.name} avatar={vehicle.avatar} bio={vehicle.bio} stringDate={stringDate} nameSelected={nameSelected} />;
+                    })
+
                 }
             </main>
 

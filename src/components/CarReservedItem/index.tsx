@@ -4,16 +4,18 @@ import reserveIcon from '../../assets/images/icons/reserve.svg'
 import api from "../../services/api";
 import "./styles.css"
 
-export interface Vehicle {
+export interface VehicleReservation {
     id: number;
     avatar: string;
     bio: string;
     name: string; //Car Name.
     stringDate: number;
     nameSelected: string; //Staff Reserving the Vehicle.
+    staff: string; //Staff that have already reserved the Vehicle
 }
 
-const CarItem: React.FunctionComponent<Vehicle> = ({ id, avatar, bio, name, stringDate, nameSelected }) => {
+
+const CarItem: React.FunctionComponent<VehicleReservation> = ({ staff, id, avatar, bio, name, stringDate, nameSelected }) => {
     async function createNewReservation() {
         if (!nameSelected) {
             alert("Error: Invalid name, please insert your name.");
@@ -49,11 +51,14 @@ const CarItem: React.FunctionComponent<Vehicle> = ({ id, avatar, bio, name, stri
                 <p>
                     <strong>Description: </strong> {bio}
                 </p>
+                <p>
+                    <strong>Reserved: </strong> {staff}
+                </p>
             </div>
 
 
             <footer>
-                <button onClick={createNewReservation} type="button">
+                <button disabled={true} onClick={createNewReservation} type="button">
                     <img id="reserveIcon" src={reserveIcon} alt="Reserve Icon" />
                     Confirm Truck
                 </button>
