@@ -84,8 +84,8 @@
 }
 
 .car-item footer button:disabled {
-  pointer-events: none;
   opacity: 40%;
+  cursor: not-allowed;
 }
 
 .car-item footer button:hover {
