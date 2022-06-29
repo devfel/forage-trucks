@@ -9,7 +9,7 @@ export interface VehicleReservation {
     avatar: string;
     bio: string;
     name: string; //Car Name.
-    staff: string; //Staff Name on the input.
+    periodSelected: string; //period selected on the input.
     stringDate: number;
     nameSelected: string; //Staff Reserving the Vehicle.
     reservationsList: VehicleReservationsItem[];
@@ -22,7 +22,7 @@ export interface VehicleReservationsItem {
     period: string;
 }
 
-const CarReservedItem: React.FunctionComponent<VehicleReservation> = ({ staff, vehicle_id, avatar, bio, name, stringDate, nameSelected, reservationsList }) => {
+const CarReservedItem: React.FunctionComponent<VehicleReservation> = ({ periodSelected, vehicle_id, avatar, bio, name, stringDate, nameSelected, reservationsList }) => {
     async function createNewReservation() {
         if (!nameSelected) {
             alert("Error: Invalid name, please insert your name.");
@@ -30,7 +30,7 @@ const CarReservedItem: React.FunctionComponent<VehicleReservation> = ({ staff, v
             try {
                 await api.post('reservations', {
                     "date": stringDate,
-                    "period": "morning",
+                    "period": periodSelected,
                     "staff": nameSelected,
                     "vehicle_id": vehicle_id,
                 });
@@ -59,17 +59,19 @@ const CarReservedItem: React.FunctionComponent<VehicleReservation> = ({ staff, v
                 <p>
                     <strong>Description: </strong> {bio}
                 </p>
-                <br></br>
-                <p><b>Reservations: </b> ({dReserved})</p>
-                {
-                    reservationsList.map((reservationItem: VehicleReservationsItem) => {
-                        return (
-                            <p key={reservationItem.reservation_id}>
-                                {reservationItem.staff_reserved} - <b>Period:</b> {reservationItem.period}
-                            </p>
-                        )
-                    })
-                }
+
+                <div className="reservations-list">
+                    <p><b>Reservations Priority for {dReserved}</b></p>
+                    {
+                        reservationsList.map((reservationItem: VehicleReservationsItem, index) => {
+                            return (
+                                <p key={reservationItem.reservation_id}>
+                                    <b>{index + 1}</b>: {reservationItem.staff_reserved} - <i>Period: <b>{reservationItem.period}</b></i>
+                                </p>
+                            )
+                        })
+                    }
+                </div>
             </div>
 
 

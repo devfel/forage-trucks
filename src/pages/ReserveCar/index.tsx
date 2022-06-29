@@ -6,6 +6,7 @@ import api from '../../services/api';
 import loading2 from "../../assets/images/loading2.gif";
 
 import "./styles.css"
+import { time } from 'console';
 
 function ReserveCar() {
     const today = new Date();
@@ -22,10 +23,19 @@ function ReserveCar() {
         return initialValue || "";
     });
     const [wholeDay, setWholeDay] = useState(true);
-    const [periodHours, setPeriodHours] = useState("");
+    const [periodHoursFrom, setPeriodHoursFrom] = useState("06:00");
+    const [periodHoursTo, setPeriodHoursTo] = useState("22:00");
     const [loading, setLoading] = useState(true);
 
     const stringDate = Date.parse(dateSelected);
+
+    const suffixHoursFrom = (parseInt(periodHoursFrom.split(':')[0]) >= 12) ? "PM" : "AM";
+    const suffixHoursTo = (parseInt(periodHoursTo.split(':')[0]) >= 12) ? "PM" : "AM";
+
+    const timeFromInAMPM = ((parseInt(periodHoursFrom.split(':')[0]) + 11) % 12 + 1) + ":" + (periodHoursFrom.split(':')[1]) + " " + suffixHoursFrom;
+    const timeToInAMPM = ((parseInt(periodHoursTo.split(':')[0]) + 11) % 12 + 1) + ":" + (periodHoursTo.split(':')[1]) + " " + suffixHoursTo;
+
+    const periodSelected = wholeDay ? "Entire Day" : timeFromInAMPM + " to " + timeToInAMPM;
 
     // storing input name
     useEffect(() => {
@@ -55,6 +65,7 @@ function ReserveCar() {
     const reservationsListOnDate = reservationsList.filter(el => el.date === stringDate + "");
 
 
+
     //Reduce and Reorganize List of Reservations/Vehicles to show only one Card per Card with the Reservation List.
     let reservationListOnDateSummarized: VehicleReservation[] = [];
     reservationsListOnDate.forEach(function (currentValue, index, arr) {
@@ -63,7 +74,7 @@ function ReserveCar() {
         mainData.name = currentValue.name;
         mainData.avatar = currentValue.avatar;
         mainData.bio = currentValue.bio;
-        mainData.staff = currentValue.staff;
+        mainData.periodSelected = periodSelected;
         mainData.stringDate = stringDate;
         mainData.nameSelected = nameSelected;
         mainData.reservationsList = [];
@@ -90,7 +101,7 @@ function ReserveCar() {
             <PageHeader title="These are the registered cars available.">
 
                 <form id="search-trucks">
-                    <div className="input-block">
+                    <div className="input-block" id="subject-date">
                         <label htmlFor="subjectDate">Select a date: </label>
                         {// <input type="date" id="subjectDate" value={dateSelected} onChange={(e) => { searchAvailableVehicles(e) }} />
                         }
@@ -98,19 +109,25 @@ function ReserveCar() {
 
                     </div>
 
-                    <div className="input-block">
+                    <div className="input-block" id="subject-name">
                         <label htmlFor="subjectName">Write your name: </label>
                         <input type="text" id="subjectName" value={nameSelected} onChange={(e) => { setNameSelected(e.target.value) }} />
                     </div>
 
-                    <div className="input-block">
-                        <label htmlFor="subjectPeriodWholeDay">Whole Day: </label>
-                        <input className="check-whole-day" type="checkbox" id="subjectPeriodWholeDay" value={"wholeDay"} onClick={(e) => { }} />
+                    <div className="input-block" id="subject-period-whole-day" >
+                        <label htmlFor="subjectPeriodWholeDay">Entire Day: </label>
+                        <input className="check-whole-day" type="checkbox" checked={wholeDay} id="subjectPeriodWholeDay" value={"wholeDay"} onClick={(e) => { setWholeDay(!wholeDay) }} />
                     </div>
 
-                    <div className="input-block">
-                        <label htmlFor="subjectPeriodHours">Hours: </label>
-                        <input type="text" id="subjectPeriodHours" value={periodHours} onChange={(e) => { setPeriodHours(e.target.value) }} />
+                    <div className="input-block" id="subject-period-hours-from" style={wholeDay ? { display: "none", visibility: "hidden" } : { opacity: "1.0" }}>
+                        <label htmlFor="subjectPeriodHoursFrom">From: </label>
+                        <input type="time" id="subjectPeriodHoursFrom" disabled={wholeDay} style={wholeDay ? { opacity: '0.5' } : { opacity: "1.0" }} value={periodHoursFrom} onChange={(e) => { setPeriodHoursFrom(e.target.value) }} />
+
+                    </div>
+
+                    <div className="input-block" id="subject-period-hours-to" style={wholeDay ? { display: "none", visibility: "hidden" } : { opacity: "1.0" }}>
+                        <label htmlFor="subjectPeriodHoursTo">To: </label>
+                        <input type="time" id="subjectPeriodHoursTo" disabled={wholeDay} style={wholeDay ? { opacity: '0.5' } : { opacity: "1.0" }} value={periodHoursTo} onChange={(e) => { setPeriodHoursTo(e.target.value) }} />
                     </div>
                 </form>
 
@@ -126,14 +143,11 @@ function ReserveCar() {
                     })
 
                 }
-                { /* //Merge Toghether elements that have the same reservation Date and Vehicle_ID. */
-
-
-
+                {
                     reservationListOnDateSummarized.map((vehicleReservationItem: VehicleReservation) => {
                         return <CarReservedItem
                             key={vehicleReservationItem.vehicle_id}
-                            staff={vehicleReservationItem.staff}
+                            periodSelected={periodSelected}
                             vehicle_id={vehicleReservationItem.vehicle_id}
                             name={vehicleReservationItem.name}
                             avatar={vehicleReservationItem.avatar}
@@ -142,7 +156,6 @@ function ReserveCar() {
                             stringDate={stringDate}
                             nameSelected={nameSelected} />;
                     })
-
                 }
             </main>
 

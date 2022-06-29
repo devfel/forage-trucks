@@ -62,8 +62,13 @@
     font: 1.6 Archivo
 }
 
+input[type="time"] :disabled {
+    background: #222 !important;
+}
+
+
 .check-whole-day {
-    background: #555 !important;
+    height: 30px !important;
 }
 
 /* Temporary End*/
@@ -75,12 +80,38 @@
 
     #search-trucks {
         display: grid;
-        grid-template-columns: 1fr 2fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
         column-gap: 16px;
         row-gap: 10px;
-        position: absolute;
+        position: initial;
         bottom: -138px;
     }
+
+    #subject-date {
+        grid-column: span 2;
+    }
+
+    #subject-name {
+        grid-column: span 3;
+    }
+
+    #subject-period-whole-day {
+        grid-column: span 1;
+    }
+
+    #subject-period-hours-from {
+        grid-column: span 2;
+    }
+
+    #subject-period-hours-to {
+        grid-column: span 2;
+    }
+
+    /* .check-whole-day {
+        margin-top: 16px !important;
+        height: 30px !important;
+
+}*/
 
     #search-trucks .input-block+.input-block,
     #search-trucks .select-block+.select-block {
