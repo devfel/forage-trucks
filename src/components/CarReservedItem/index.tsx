@@ -5,17 +5,24 @@ import api from "../../services/api";
 import "./styles.css"
 
 export interface VehicleReservation {
-    id: number;
+    vehicle_id: number;
     avatar: string;
     bio: string;
     name: string; //Car Name.
+    staff: string; //Staff Name on the input.
     stringDate: number;
     nameSelected: string; //Staff Reserving the Vehicle.
-    staff: string; //Staff that have already reserved the Vehicle
+    reservationsList: VehicleReservationsItem[];
 }
 
+export interface VehicleReservationsItem {
+    reservation_id: number;
+    staff_reserved: string;
+    created_at: string;
+    period: string;
+}
 
-const CarItem: React.FunctionComponent<VehicleReservation> = ({ staff, id, avatar, bio, name, stringDate, nameSelected }) => {
+const CarReservedItem: React.FunctionComponent<VehicleReservation> = ({ staff, vehicle_id, avatar, bio, name, stringDate, nameSelected, reservationsList }) => {
     async function createNewReservation() {
         if (!nameSelected) {
             alert("Error: Invalid name, please insert your name.");
@@ -25,20 +32,21 @@ const CarItem: React.FunctionComponent<VehicleReservation> = ({ staff, id, avata
                     "date": stringDate,
                     "period": "morning",
                     "staff": nameSelected,
-                    "vehicle_id": id,
+                    "vehicle_id": vehicle_id,
                 });
 
                 //CONFIRMATION OF RESERVATION MESSAGE
                 alert("Success: Vehicle Reserved Successfully.")
             } catch (error) {
                 //CONFIRMATION OF RESERVATION MESSAGE
-                alert("Error: " + error)
+                alert("Error HERE: " + error)
             }
             //REFRESH PAGE TO HIDE ITEM RESERVED.
             window.location.reload();
         }
     }
 
+    const dReserved = new Date(+stringDate).toUTCString().split(' ').slice(0, 4).join(' ');
 
     return (
         <article className="car-item">
@@ -51,14 +59,22 @@ const CarItem: React.FunctionComponent<VehicleReservation> = ({ staff, id, avata
                 <p>
                     <strong>Description: </strong> {bio}
                 </p>
-                <p>
-                    <strong>Reserved: </strong> {staff}
-                </p>
+                <br></br>
+                <p><b>Reservations: </b> ({dReserved})</p>
+                {
+                    reservationsList.map((reservationItem: VehicleReservationsItem) => {
+                        return (
+                            <p key={reservationItem.reservation_id}>
+                                {reservationItem.staff_reserved} - <b>Period:</b> {reservationItem.period}
+                            </p>
+                        )
+                    })
+                }
             </div>
 
 
             <footer>
-                <button disabled={true} onClick={createNewReservation} type="button">
+                <button disabled={false} onClick={createNewReservation} type="button">
                     <img id="reserveIcon" src={reserveIcon} alt="Reserve Icon" />
                     Confirm Truck
                 </button>
@@ -68,4 +84,4 @@ const CarItem: React.FunctionComponent<VehicleReservation> = ({ staff, id, avata
     );
 }
 
-export default CarItem;
+export default CarReservedItem;

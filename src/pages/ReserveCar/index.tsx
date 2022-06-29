@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import CarItem, { Vehicle } from "../../components/CarItem";
-import CarReservedItem, { VehicleReservation } from "../../components/CarReservedItem";
+import CarReservedItem, { VehicleReservation, VehicleReservationsItem } from "../../components/CarReservedItem";
 import PageHeader from "../../components/PageHeader";
 import api from '../../services/api';
 import loading2 from "../../assets/images/loading2.gif";
@@ -21,6 +21,8 @@ function ReserveCar() {
         const initialValue = JSON.parse(saved as any);
         return initialValue || "";
     });
+    const [wholeDay, setWholeDay] = useState(true);
+    const [periodHours, setPeriodHours] = useState("");
     const [loading, setLoading] = useState(true);
 
     const stringDate = Date.parse(dateSelected);
@@ -49,8 +51,40 @@ function ReserveCar() {
                 setLoading(false);
             });
     }, [stringDate]);
+    //Filter Full ReservationsList to only consider the correct date. 
     const reservationsListOnDate = reservationsList.filter(el => el.date === stringDate + "");
 
+
+    //Reduce and Reorganize List of Reservations/Vehicles to show only one Card per Card with the Reservation List.
+    let reservationListOnDateSummarized: VehicleReservation[] = [];
+    reservationsListOnDate.forEach(function (currentValue, index, arr) {
+        let mainData = new Object() as VehicleReservation;
+        mainData.vehicle_id = currentValue.vehicle_id;
+        mainData.name = currentValue.name;
+        mainData.avatar = currentValue.avatar;
+        mainData.bio = currentValue.bio;
+        mainData.staff = currentValue.staff;
+        mainData.stringDate = stringDate;
+        mainData.nameSelected = nameSelected;
+        mainData.reservationsList = [];
+
+        let auxData = new Object() as VehicleReservationsItem;
+        auxData.reservation_id = currentValue.id;
+        auxData.staff_reserved = currentValue.staff;
+        auxData.created_at = currentValue.created_at;
+        auxData.period = currentValue.period;
+
+        let indice = reservationListOnDateSummarized.findIndex(x => x.vehicle_id == currentValue.vehicle_id);
+        if (indice == -1) {
+            reservationListOnDateSummarized.push(mainData);
+            reservationListOnDateSummarized[reservationListOnDateSummarized.length - 1].reservationsList.push(auxData);
+        } else {
+            reservationListOnDateSummarized[indice].reservationsList.push(auxData);
+        }
+    });
+
+
+    //Page Structure
     return (
         <div id="page-reserve-car" className="container">
             <PageHeader title="These are the registered cars available.">
@@ -63,9 +97,20 @@ function ReserveCar() {
                         <input type="date" id="subjectDate" value={dateSelected} onChange={(e) => { setDateSelected(e.target.value) }} />
 
                     </div>
+
                     <div className="input-block">
                         <label htmlFor="subjectName">Write your name: </label>
                         <input type="text" id="subjectName" value={nameSelected} onChange={(e) => { setNameSelected(e.target.value) }} />
+                    </div>
+
+                    <div className="input-block">
+                        <label htmlFor="subjectPeriodWholeDay">Whole Day: </label>
+                        <input className="check-whole-day" type="checkbox" id="subjectPeriodWholeDay" value={"wholeDay"} onClick={(e) => { }} />
+                    </div>
+
+                    <div className="input-block">
+                        <label htmlFor="subjectPeriodHours">Hours: </label>
+                        <input type="text" id="subjectPeriodHours" value={periodHours} onChange={(e) => { setPeriodHours(e.target.value) }} />
                     </div>
                 </form>
 
@@ -81,9 +126,21 @@ function ReserveCar() {
                     })
 
                 }
-                {
-                    reservationsListOnDate.map((vehicle: VehicleReservation) => {
-                        return <CarReservedItem key={vehicle.id} staff={vehicle.staff} id={vehicle.id} name={vehicle.name} avatar={vehicle.avatar} bio={vehicle.bio} stringDate={stringDate} nameSelected={nameSelected} />;
+                { /* //Merge Toghether elements that have the same reservation Date and Vehicle_ID. */
+
+
+
+                    reservationListOnDateSummarized.map((vehicleReservationItem: VehicleReservation) => {
+                        return <CarReservedItem
+                            key={vehicleReservationItem.vehicle_id}
+                            staff={vehicleReservationItem.staff}
+                            vehicle_id={vehicleReservationItem.vehicle_id}
+                            name={vehicleReservationItem.name}
+                            avatar={vehicleReservationItem.avatar}
+                            bio={vehicleReservationItem.bio}
+                            reservationsList={vehicleReservationItem.reservationsList}
+                            stringDate={stringDate}
+                            nameSelected={nameSelected} />;
                     })
 
                 }

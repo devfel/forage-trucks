@@ -10,10 +10,11 @@ export interface Reservation {
     vehicle_id: number;
     name: string;
     avatar: string;
-    bio: string
+    bio: string;
+    period: string;
 }
 
-const ReservationItem: React.FunctionComponent<Reservation> = ({ id, date, staff, created_at, vehicle_id, name, avatar, bio }) => {
+const ReservationItem: React.FunctionComponent<Reservation> = ({ id, date, staff, created_at, vehicle_id, period, name, avatar, bio }) => {
     const dReserved = new Date(+date).toUTCString().split(' ').slice(0, 4).join(' ');
     const dCreated = new Date(created_at).toLocaleString();
 
@@ -23,7 +24,8 @@ const ReservationItem: React.FunctionComponent<Reservation> = ({ id, date, staff
             <div className="text-information">
                 <header>
                     <strong>{staff}</strong>
-                    <span>Date: <b>{dReserved}</b></span>
+                    <span><b>Date: {dReserved}</b></span>
+                    <span><b>Period: {period}</b></span>
                     <span>Reservation Created at: {dCreated} GMT</span>
                 </header>
 
