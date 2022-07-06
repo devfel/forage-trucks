@@ -48,6 +48,48 @@ const CarReservedItem: React.FunctionComponent<VehicleReservation> = ({ periodSe
 
     const dReserved = new Date(+stringDate).toUTCString().split(' ').slice(0, 4).join(' ');
 
+    //Transforming AM/PM BEGIN time to number format later check the availability.
+    //Example: Input "8:00 PM to 10:00 PM" / Output: 1200 (20 x 60 + 00)
+    function convertBeginPeriodTo24h(periodAM_PM: string): Number {
+        const period24h = (periodAM_PM.split(' to ')[0].split(' ')[1] === "PM") ?
+            //Transforming PM to 24h 
+            (Number(Number(periodAM_PM.split(' to ')[0].split(' ')[0].split(':')[0]) + 12) * 60) + Number(periodAM_PM.split(' to ')[0].split(' ')[0].split(':')[1])
+            : //Transforming AM to 24h 
+            (Number(Number(periodAM_PM.split(' to ')[0].split(' ')[0].split(':')[0]) + 0) * 60) + Number(periodAM_PM.split(' to ')[0].split(' ')[0].split(':')[1])
+        return period24h;
+    }
+    //Transforming AM/PM END time to 24 hours to later check the availability.
+    //Example: Input "8:00 PM to 10:30 PM" / Output: 1350 (22 x 60 + 30)
+    function convertEndPeriodTo24h(periodAM_PM: string): Number {
+        const period24h = (periodAM_PM.split(' to ')[1].split(' ')[1] === "PM") ?
+            //Transforming PM to 24h 
+            (Number(Number(periodAM_PM.split(' to ')[1].split(' ')[0].split(':')[0]) + 12) * 60) + Number(periodAM_PM.split(' to ')[1].split(' ')[0].split(':')[1])
+            : //Transforming AM to 24h 
+            (Number(Number(periodAM_PM.split(' to ')[1].split(' ')[0].split(':')[0]) + 0) * 60) + Number(periodAM_PM.split(' to ')[1].split(' ')[0].split(':')[1])
+        return period24h;
+    }
+
+    //check if the period is available, return true if it is possible to rent the object, false if period does not match.
+    //Example: Input P1 = "8:00 PM to 10:30 PM" P2 = "10:15 PM to 11:00 PM"/ Output: false (because 10:15 starts before the p1 ends)
+    //Period 1 (reservation), Period 2 (selected period)
+    function checkAvailabilityPeriod(period1: string, period2: string): boolean {
+        if (period1 === "Entire Day" || period2 === "Entire Day") {
+            return false;
+        }
+        //Don't let users reserve after midnight (due to being another day).
+        if (((period2.split(' to ')[0].split(' ')[0].split(':')[0] === "12") && (period2.split(' to ')[0].split(' ')[1] === "AM")) ||
+            ((period2.split(' to ')[1].split(' ')[0].split(':')[0] === "12") && (period2.split(' to ')[1].split(' ')[1] === "AM"))) {
+            return false;
+        }
+        //period2 begins > period1 ends && period2 ends > period2 begins (NOT OVERLAP, TRUE)
+        if (convertBeginPeriodTo24h(period2) >= convertEndPeriodTo24h(period1) && convertEndPeriodTo24h(period2) > convertBeginPeriodTo24h(period2)) return true;
+        //period2 ends < period1 begins && period2 ends > period2 begins (NOT OVERLAP, TRUE)
+        if (convertEndPeriodTo24h(period2) <= convertBeginPeriodTo24h(period1) && convertEndPeriodTo24h(period2) > convertBeginPeriodTo24h(period2)) return true;
+        else return false;
+    }
+
+    //console.log(checkAvailabilityPeriod("08:00 PM to 10:00 PM", periodSelected));
+
     return (
         <article className="car-item">
             <img className="car-img" src={`/forage-trucks/images/${avatar}.jpg`} alt={name} />
@@ -63,20 +105,22 @@ const CarReservedItem: React.FunctionComponent<VehicleReservation> = ({ periodSe
                 <div className="reservations-list">
                     <p><b>Reservations Priority for {dReserved}</b></p>
                     {
-                        reservationsList.map((reservationItem: VehicleReservationsItem, index) => {
+                        reservationsList.sort(function (a, b) { return a.reservation_id - b.reservation_id; }).map((reservationItem: VehicleReservationsItem, index) => {
                             return (
                                 <p key={reservationItem.reservation_id}>
                                     <b>{index + 1}</b>: {reservationItem.staff_reserved} - <i>Period: <b>{reservationItem.period}</b></i>
                                 </p>
                             )
                         })
+
                     }
                 </div>
             </div>
 
 
             <footer>
-                <button disabled={false} onClick={createNewReservation} type="button">
+                {console.log(reservationsList)}
+                <button disabled={reservationsList.some(res => res.period === 'Entire Day') ? true : ((reservationsList.every(res => checkAvailabilityPeriod(res.period, periodSelected))) ? false : true)} onClick={createNewReservation} type="button">
                     <img id="reserveIcon" src={reserveIcon} alt="Reserve Icon" />
                     Confirm Truck
                 </button>
