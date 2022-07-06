@@ -50,23 +50,23 @@ const CarReservedItem: React.FunctionComponent<VehicleReservation> = ({ periodSe
 
     //Transforming AM/PM BEGIN time to number format later check the availability.
     //Example: Input "8:00 PM to 10:00 PM" / Output: 1200 (20 x 60 + 00)
-    function convertBeginPeriodTo24h(periodAM_PM: string): Number {
-        const period24h = (periodAM_PM.split(' to ')[0].split(' ')[1] === "PM") ?
-            //Transforming PM to 24h 
+    function convertBeginPeriodToMinutes(periodAM_PM: string): Number {
+        const periodMinutes = (periodAM_PM.split(' to ')[0].split(' ')[1] === "PM") ?
+            //Transforming PM to Minutes 
             (Number(Number(periodAM_PM.split(' to ')[0].split(' ')[0].split(':')[0]) + 12) * 60) + Number(periodAM_PM.split(' to ')[0].split(' ')[0].split(':')[1])
-            : //Transforming AM to 24h 
+            : //Transforming AM to Minutes 
             (Number(Number(periodAM_PM.split(' to ')[0].split(' ')[0].split(':')[0]) + 0) * 60) + Number(periodAM_PM.split(' to ')[0].split(' ')[0].split(':')[1])
-        return period24h;
+        return periodMinutes;
     }
     //Transforming AM/PM END time to 24 hours to later check the availability.
     //Example: Input "8:00 PM to 10:30 PM" / Output: 1350 (22 x 60 + 30)
-    function convertEndPeriodTo24h(periodAM_PM: string): Number {
-        const period24h = (periodAM_PM.split(' to ')[1].split(' ')[1] === "PM") ?
-            //Transforming PM to 24h 
+    function convertEndPeriodToMinutes(periodAM_PM: string): Number {
+        const periodMinutes = (periodAM_PM.split(' to ')[1].split(' ')[1] === "PM") ?
+            //Transforming PM to Minutes 
             (Number(Number(periodAM_PM.split(' to ')[1].split(' ')[0].split(':')[0]) + 12) * 60) + Number(periodAM_PM.split(' to ')[1].split(' ')[0].split(':')[1])
-            : //Transforming AM to 24h 
+            : //Transforming AM to Minutes 
             (Number(Number(periodAM_PM.split(' to ')[1].split(' ')[0].split(':')[0]) + 0) * 60) + Number(periodAM_PM.split(' to ')[1].split(' ')[0].split(':')[1])
-        return period24h;
+        return periodMinutes;
     }
 
     //check if the period is available, return true if it is possible to rent the object, false if period does not match.
@@ -82,9 +82,9 @@ const CarReservedItem: React.FunctionComponent<VehicleReservation> = ({ periodSe
             return false;
         }
         //period2 begins > period1 ends && period2 ends > period2 begins (NOT OVERLAP, TRUE)
-        if (convertBeginPeriodTo24h(period2) >= convertEndPeriodTo24h(period1) && convertEndPeriodTo24h(period2) > convertBeginPeriodTo24h(period2)) return true;
+        if (convertBeginPeriodToMinutes(period2) >= convertEndPeriodToMinutes(period1) && convertEndPeriodToMinutes(period2) > convertBeginPeriodToMinutes(period2)) return true;
         //period2 ends < period1 begins && period2 ends > period2 begins (NOT OVERLAP, TRUE)
-        if (convertEndPeriodTo24h(period2) <= convertBeginPeriodTo24h(period1) && convertEndPeriodTo24h(period2) > convertBeginPeriodTo24h(period2)) return true;
+        if (convertEndPeriodToMinutes(period2) <= convertBeginPeriodToMinutes(period1) && convertEndPeriodToMinutes(period2) > convertBeginPeriodToMinutes(period2)) return true;
         else return false;
     }
 
