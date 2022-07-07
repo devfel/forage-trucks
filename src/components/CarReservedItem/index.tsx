@@ -96,8 +96,6 @@ const CarReservedItem: React.FunctionComponent<VehicleReservation> = ({ periodSe
         else return false;
     }
 
-    //console.log(checkAvailabilityPeriod("08:00 PM to 10:00 PM", periodSelected));
-
     return (
         <article className="car-item">
             <img className="car-img" src={`/forage-trucks/images/${avatar}.jpg`} alt={name} />
@@ -127,7 +125,6 @@ const CarReservedItem: React.FunctionComponent<VehicleReservation> = ({ periodSe
 
 
             <footer>
-                {console.log(reservationsList)}
                 <button disabled={reservationsList.some(res => res.period === 'Entire Day') ? true : ((reservationsList.every(res => checkAvailabilityPeriod(res.period, periodSelected))) ? false : true)} onClick={createNewReservation} type="button">
                     <img id="reserveIcon" src={reserveIcon} alt="Reserve Icon" />
                     Confirm Truck

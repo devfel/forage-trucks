@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'
 import loading2 from "../../assets/images/loading2.gif";
-import logoImg from "../../assets/images/logo.png";
+import logoImg from "../../assets/images/logoTransp.png";
 import landingImg from "../../assets/images/landing.svg";
 import studyIcon from "../../assets/images/icons/study.svg";
 import pickupIcon from "../../assets/images/icons/pickup.svg";

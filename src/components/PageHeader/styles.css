@@ -25,6 +25,7 @@
 
 .page-header .top-bar-container>img {
     height: 9.6rem;
+    border-radius: 15%;
 }
 
 .page-header .header-content {

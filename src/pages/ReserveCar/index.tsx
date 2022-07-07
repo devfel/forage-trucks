@@ -6,7 +6,6 @@ import api from '../../services/api';
 import loading2 from "../../assets/images/loading2.gif";
 
 import "./styles.css"
-import { time } from 'console';
 
 function ReserveCar() {
     const today = new Date();
@@ -69,7 +68,7 @@ function ReserveCar() {
     //Reduce and Reorganize List of Reservations/Vehicles to show only one Card per Card with the Reservation List.
     let reservationListOnDateSummarized: VehicleReservation[] = [];
     reservationsListOnDate.forEach(function (currentValue, index, arr) {
-        let mainData = new Object() as VehicleReservation;
+        let mainData = {} as VehicleReservation;
         mainData.vehicle_id = currentValue.vehicle_id;
         mainData.name = currentValue.name;
         mainData.avatar = currentValue.avatar;
@@ -79,18 +78,18 @@ function ReserveCar() {
         mainData.nameSelected = nameSelected;
         mainData.reservationsList = [];
 
-        let auxData = new Object() as VehicleReservationsItem;
+        let auxData = {} as VehicleReservationsItem;
         auxData.reservation_id = currentValue.id;
         auxData.staff_reserved = currentValue.staff;
         auxData.created_at = currentValue.created_at;
         auxData.period = currentValue.period;
 
-        let indice = reservationListOnDateSummarized.findIndex(x => x.vehicle_id == currentValue.vehicle_id);
-        if (indice == -1) {
+        let indexAux = reservationListOnDateSummarized.findIndex(x => x.vehicle_id === currentValue.vehicle_id);
+        if (indexAux === -1) {
             reservationListOnDateSummarized.push(mainData);
             reservationListOnDateSummarized[reservationListOnDateSummarized.length - 1].reservationsList.push(auxData);
         } else {
-            reservationListOnDateSummarized[indice].reservationsList.push(auxData);
+            reservationListOnDateSummarized[indexAux].reservationsList.push(auxData);
         }
     });
 
@@ -116,7 +115,7 @@ function ReserveCar() {
 
                     <div className="input-block" id="subject-period-whole-day" >
                         <label htmlFor="subjectPeriodWholeDay">Entire Day: </label>
-                        <input className="check-whole-day" type="checkbox" checked={wholeDay} id="subjectPeriodWholeDay" value={"wholeDay"} onClick={(e) => { setWholeDay(!wholeDay) }} />
+                        <input className="check-whole-day" type="checkbox" defaultChecked={wholeDay} id="subjectPeriodWholeDay" value={"wholeDay"} onClick={(e) => { setWholeDay(!wholeDay) }} />
                     </div>
 
                     <div className="input-block" id="subject-period-hours-from" style={wholeDay ? { display: "none", visibility: "hidden" } : { opacity: "1.0" }}>
