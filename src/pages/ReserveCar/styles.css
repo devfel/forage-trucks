@@ -73,6 +73,13 @@ input[type="time"] :disabled {
 
 /* Temporary End*/
 
+@media (min-width: 780px) {
+    #subject-period-whole-day {
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+}
+
 @media (min-width: 700px) {
     #page-reserve-car {
         max-width: 100vw;
