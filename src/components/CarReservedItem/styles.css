@@ -10,7 +10,7 @@
 }
 
 .car-item header {
-  padding: 3.2rem 2rem;
+  padding: 1.5rem 2rem;
   display: flex;
   align-items: center;
 }
@@ -20,10 +20,10 @@
   top: 1rem;
   min-width: 130px;
   min-height: 130px;
-  width: 89%;
+  width: 60%;
   border-radius: 10%;
   align-self: center;
-  margin-top: 3.2rem;
+  margin-top: 2.0rem;
 }
 
 .car-item header div {
@@ -177,6 +177,10 @@
     height: 139px;
     border-radius: 10%;
     margin-top: 0;
+  }
+
+  .car-item header {
+    padding: 3.2rem 2rem;
   }
 
 }

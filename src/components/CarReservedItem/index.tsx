@@ -50,7 +50,7 @@ const CarReservedItem: React.FunctionComponent<VehicleReservation> = ({ periodSe
 
     //Transforming AM/PM BEGIN time to number format later check the availability.
     //Example: Input "8:00 PM to 10:00 PM" / Output: 1200 (20 x 60 + 00)
-    function convertBeginPeriodToMinutes(periodAM_PM: string): Number {
+    function convertBeginPeriodToMinutes(periodAM_PM: string): number {
         const periodMinutes = (periodAM_PM.split(' to ')[0].split(' ')[1] === "PM") ?
             //exeption for 12PM (noon)
             ((periodAM_PM.split(' to ')[0].split(' ')[0].split(':')[0] === "12") ?
@@ -64,7 +64,7 @@ const CarReservedItem: React.FunctionComponent<VehicleReservation> = ({ periodSe
     }
     //Transforming AM/PM END time to 24 hours to later check the availability.
     //Example: Input "8:00 PM to 10:30 PM" / Output: 1350 (22 x 60 + 30)
-    function convertEndPeriodToMinutes(periodAM_PM: string): Number {
+    function convertEndPeriodToMinutes(periodAM_PM: string): number {
         const periodMinutes = (periodAM_PM.split(' to ')[1].split(' ')[1] === "PM") ?
             //exeption for 12PM (noon)
             ((periodAM_PM.split(' to ')[1].split(' ')[0].split(':')[0] === "12") ?
@@ -109,9 +109,9 @@ const CarReservedItem: React.FunctionComponent<VehicleReservation> = ({ periodSe
                 </p>
 
                 <div className="reservations-list">
-                    <p><b>Reservations Priority for {dReserved}</b></p>
+                    <p><b>Reservations List for {dReserved}</b></p>
                     {
-                        reservationsList.sort(function (a, b) { return a.reservation_id - b.reservation_id; }).map((reservationItem: VehicleReservationsItem, index) => {
+                        reservationsList.sort(function (a, b) { return (convertBeginPeriodToMinutes(a.period) - convertBeginPeriodToMinutes(b.period)); }).map((reservationItem: VehicleReservationsItem, index) => {
                             return (
                                 <p key={reservationItem.reservation_id}>
                                     <b>{index + 1}</b>: {reservationItem.staff_reserved} - <i>Period: <b>{reservationItem.period}</b></i>

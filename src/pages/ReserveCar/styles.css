@@ -73,7 +73,7 @@ input[type="time"] :disabled {
 
 /* Temporary End*/
 
-@media (min-width: 780px) {
+@media (min-width: 800px) {
     #subject-period-whole-day {
         margin-left: 10%;
         margin-right: 10%;

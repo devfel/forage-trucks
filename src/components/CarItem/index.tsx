@@ -89,6 +89,7 @@ const CarItem: React.FunctionComponent<Vehicle> = ({ id, avatar, periodSelected,
 
     return (
         <article className="car-item">
+
             <img className="car-img" src={`/forage-trucks/images/${avatar}.jpg`} alt={name} />
             <div className="text-info">
                 <header>

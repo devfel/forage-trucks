@@ -1,18 +1,18 @@
 .car-item {
-    background: var(--color-car-reserve-box);
-    border: 1px solid var(--color-line-in-white);
-    border-radius: 0.8rem;
-    margin-top: 3.4rem;
-    overflow: hidden;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-  }
+  background: var(--color-car-reserve-box);
+  border: 1px solid var(--color-line-in-white);
+  border-radius: 0.8rem;
+  margin-top: 3.4rem;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
 
 .car-item header {
-    padding: 3.2rem 2rem;
-    display: flex;
-    align-items: center;
+  padding: 1.0rem 2rem;
+  display: flex;
+  align-items: center;
 }
 
 .car-item .car-img {
@@ -20,72 +20,73 @@
   top: 1rem;
   min-width: 130px;
   min-height: 130px;
-  width: 89%;
+  width: 60%;
   border-radius: 10%;
   align-self: center;
-  margin-top: 3.2rem;
+  margin-top: 2.0rem;
 }
 
 .car-item header div {
-    margin-left: 2.4rem;
+  margin-left: 2.4rem;
 }
 
 .car-item header strong {
-    font: 700 3.4rem Archivo;
-    display: block;
-    color: var(--color-text-title);
+  font: 700 3.4rem Archivo;
+  display: block;
+  color: var(--color-text-title);
 }
 
 .car-item header span {
-    font-size: 1.6rem;
-    display: block;
-    margin-top: 0.4rem;
+  font-size: 1.6rem;
+  display: block;
+  margin-top: 0.4rem;
 }
 
-.car-item .text-info > p {
-    padding: 0 2rem;
-    font-size: 1.6rem;
-    line-height: 2.8rem;
+.car-item .text-info>p {
+  padding: 0 2rem;
+  font-size: 1.6rem;
+  line-height: 2.8rem;
+  margin-bottom: 1.4rem;
 }
 
 .car-item footer {
-    padding: 3.2rem 2rem;
-    background: var(--color-car-reserve-box);
-    border-top: 1px solid var(--color-line-in-white);
-    margin-top: 3.2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    justify-content: space-between;
+  padding: 3.2rem 2rem;
+  background: var(--color-car-reserve-box);
+  border-top: 1px solid var(--color-line-in-white);
+  margin-top: 3.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  justify-content: space-between;
 }
 
 .car-item footer p strong {
-    color: var(--color-primary);
-    font-size: 1.6rem;
-    display: block;
+  color: var(--color-primary);
+  font-size: 1.6rem;
+  display: block;
 }
 
 .car-item footer button {
-    min-width: 15rem;
-    width: 100%;
-    height: 5.6rem;
-    background: var(--color-secundary);
-    color: var(--color-button-text);
-    border: 0;
-    border-radius: 0.8rem;
-    cursor: pointer;
-    font: 700 1.4rem Archivo;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1.4rem;
-    transition: 0.2s;
-    text-decoration: none;
+  min-width: 15rem;
+  width: 100%;
+  height: 5.6rem;
+  background: var(--color-secundary);
+  color: var(--color-button-text);
+  border: 0;
+  border-radius: 0.8rem;
+  cursor: pointer;
+  font: 700 1.4rem Archivo;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.4rem;
+  transition: 0.2s;
+  text-decoration: none;
 }
 
 .car-item footer button:hover {
-    background: var(--color-secundary-dark);
+  background: var(--color-secundary-dark);
 }
 
 #reserveIcon {
@@ -93,16 +94,19 @@
   height: 3rem;
   border-radius: 0.8rem;
 }
-  
+
 .car-item footer input {
   position: relative;
 }
+
 .car-item footer input {
   margin-top: 1.4rem;
 }
+
 .car-item footer input label {
   font-size: 1.6rem;
 }
+
 .car-item footer input {
   width: 80%;
   height: 5.6rem;
@@ -115,6 +119,7 @@
   margin: 1.6rem !important;
   font: 1.6 Archivo
 }
+
 .car-item footer input:focus-within::after {
   width: calc(100% - 3.2rem);
   height: 4px;
@@ -128,38 +133,42 @@
 
 
 @media (min-width: 540px) {
-    .car-item footer {
-      padding: 1.8rem 2rem;
-      flex-direction: row;
-      justify-content: flex-start;
-    }
+  .car-item footer {
+    padding: 1.8rem 2rem;
+    flex-direction: row;
+    justify-content: flex-start;
+  }
 
-    .car-item footer button {
-      width: 20rem;
-    }
-    
-    .car-item footer p strong {
-      display: initial;
-    }
-  
-    .car-item footer button {
-      width: 24.5rem;
-      font-size: 1.6rem;
-      justify-content: center;
-    }
-  
-    .car-item footer button img {
-      margin-right: 1.6rem;
-    }
+  .car-item footer button {
+    width: 20rem;
+  }
 
-    .car-item .car-img {
-      position: absolute;
-      right: 3.2rem;
-      top: 1rem;
-      width: 139px;
-      height: 139px;
-      border-radius: 10%;
-      margin-top: 0;
-    }
+  .car-item footer p strong {
+    display: initial;
+  }
+
+  .car-item footer button {
+    width: 24.5rem;
+    font-size: 1.6rem;
+    justify-content: center;
+  }
+
+  .car-item footer button img {
+    margin-right: 1.6rem;
+  }
+
+  .car-item .car-img {
+    position: absolute;
+    right: 3.2rem;
+    top: 1rem;
+    width: 139px;
+    height: 139px;
+    border-radius: 10%;
+    margin-top: 0;
+  }
+
+  .car-item header {
+    padding: 3.2rem 2rem;
+  }
 
 }
