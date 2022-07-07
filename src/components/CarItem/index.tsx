@@ -41,22 +41,30 @@ const CarItem: React.FunctionComponent<Vehicle> = ({ id, avatar, periodSelected,
     //Transforming AM/PM BEGIN time to number format later check the availability.
     //Example: Input "8:00 PM to 10:00 PM" / Output: 1200 (20 x 60 + 00)
     function convertBeginPeriodToMinutes(periodAM_PM: string): Number {
-        const periodInMinutes = (periodAM_PM.split(' to ')[0].split(' ')[1] === "PM") ?
-            //Transforming PM to 24h 
-            (Number(Number(periodAM_PM.split(' to ')[0].split(' ')[0].split(':')[0]) + 12) * 60) + Number(periodAM_PM.split(' to ')[0].split(' ')[0].split(':')[1])
-            : //Transforming AM to 24h 
+        const periodMinutes = (periodAM_PM.split(' to ')[0].split(' ')[1] === "PM") ?
+            //exeption for 12PM (noon)
+            ((periodAM_PM.split(' to ')[0].split(' ')[0].split(':')[0] === "12") ?
+                (Number(Number(periodAM_PM.split(' to ')[0].split(' ')[0].split(':')[0])) * 60) + Number(periodAM_PM.split(' to ')[0].split(' ')[0].split(':')[1])
+                :
+                //Transforming PM to Minutes 
+                (Number(Number(periodAM_PM.split(' to ')[0].split(' ')[0].split(':')[0]) + 12) * 60) + Number(periodAM_PM.split(' to ')[0].split(' ')[0].split(':')[1]))
+            : //Transforming AM to Minutes 
             (Number(Number(periodAM_PM.split(' to ')[0].split(' ')[0].split(':')[0]) + 0) * 60) + Number(periodAM_PM.split(' to ')[0].split(' ')[0].split(':')[1])
-        return periodInMinutes;
+        return periodMinutes;
     }
     //Transforming AM/PM END time to 24 hours to later check the availability.
     //Example: Input "8:00 PM to 10:30 PM" / Output: 1350 (22 x 60 + 30)
     function convertEndPeriodToMinutes(periodAM_PM: string): Number {
-        const periodInMinutes = (periodAM_PM.split(' to ')[1].split(' ')[1] === "PM") ?
-            //Transforming PM to 24h 
-            (Number(Number(periodAM_PM.split(' to ')[1].split(' ')[0].split(':')[0]) + 12) * 60) + Number(periodAM_PM.split(' to ')[1].split(' ')[0].split(':')[1])
-            : //Transforming AM to 24h 
+        const periodMinutes = (periodAM_PM.split(' to ')[1].split(' ')[1] === "PM") ?
+            //exeption for 12PM (noon)
+            ((periodAM_PM.split(' to ')[1].split(' ')[0].split(':')[0] === "12") ?
+                (Number(Number(periodAM_PM.split(' to ')[1].split(' ')[0].split(':')[0])) * 60) + Number(periodAM_PM.split(' to ')[1].split(' ')[0].split(':')[1])
+                :
+                //Transforming PM to Minutes 
+                (Number(Number(periodAM_PM.split(' to ')[1].split(' ')[0].split(':')[0]) + 12) * 60) + Number(periodAM_PM.split(' to ')[1].split(' ')[0].split(':')[1]))
+            : //Transforming AM to Minutes 
             (Number(Number(periodAM_PM.split(' to ')[1].split(' ')[0].split(':')[0]) + 0) * 60) + Number(periodAM_PM.split(' to ')[1].split(' ')[0].split(':')[1])
-        return periodInMinutes;
+        return periodMinutes;
     }
 
 
