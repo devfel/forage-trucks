@@ -137,7 +137,7 @@ function ReserveCar() {
             <main>
                 {loading ? (<div><img src={loading2} width="70px" alt="Loading" />{"Loading Data. Please Wait."}</div>) : null}
                 {
-                    availableVehicles.map((vehicle: Vehicle) => {
+                    availableVehicles.reverse().map((vehicle: Vehicle) => {
                         return <CarItem key={vehicle.id} id={vehicle.id} name={vehicle.name} periodSelected={periodSelected} avatar={vehicle.avatar} bio={vehicle.bio} stringDate={stringDate} nameSelected={nameSelected} />;
                     })
 
