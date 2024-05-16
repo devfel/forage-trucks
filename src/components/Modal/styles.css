@@ -1,0 +1,77 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-color: black;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: white;
+  color: black;
+  padding: 20px;
+  border-radius: 10px; /* Rounded corners for the modal */
+  position: relative;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for 3D effect */
+  width: auto; /* Adjust based on content size */
+  max-width: 90%; /* Limits max width for better responsiveness */
+}
+
+.close-button {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  cursor: pointer;
+  padding: 0.4rem 0.7rem;
+  border-radius: 50%; /* Circular close button */
+  background-color: #f44336; /* Red background for emphasis */
+  color: white; /* White text color */
+  border: none; /* No border */
+  font-weight: bold; /* Bold text for visibility */
+}
+
+.close-button:hover {
+  background-color: #d04336; /* Darker shade on hover for button */
+}
+
+/* Styles for input fields */
+.input-password {
+  width: 190px; /* Responsive width */
+  padding: 10px;
+  margin-top: 20px; /* Spacing from the previous element */
+  border: 1px solid #ccc; /* Subtle border */
+  border-radius: 5px; /* Rounded borders for the input field */
+  display: block; /* Makes it easier to manage layout */
+}
+
+/* Styles for buttons */
+.confirm-btn {
+  display: block; /* Ensures it doesn't inline */
+  width: auto; /* Auto width based on text size */
+  padding: 10px 20px; /* Padding for better touch */
+  margin-top: 20px; /* Space above the button */
+  background-color: #f44336; /* Green background */
+  color: white; /* White text */
+  border: none; /* No borders */
+  border-radius: 5px; /* Rounded borders for buttons */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+  outline: none; /* Removes outline */
+}
+
+.confirm-btn:hover {
+  background-color: #d04336; /* Darker shade on hover for button */
+}
+
+/* Enhances responsiveness and focus visibility */
+.input-password input[type="password"]:focus,
+.confirm-btn button:focus {
+  border-color: #4caf50;
+  box-shadow: 0 0 8px rgba(76, 175, 80, 0.5); /* Focus shadow */
+}
