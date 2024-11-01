@@ -27,7 +27,7 @@ function Landing() {
       <div id="page-landing-content" className="container">
         <div id="logo-container">
           <img src={logoImg} alt="Ifas Logo" />
-          <h2>Our plataform to reserve vehicles</h2>
+          <h2>Our plataform to reserve vehicles.</h2>
         </div>
 
         <img src={landingImg} className="hero-image" alt="cars and trucks" />
