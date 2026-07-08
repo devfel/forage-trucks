@@ -1,7 +1,9 @@
+// forage-trucks/src/pages/ReservationList/index.tsx
 import React, { useEffect, useState } from "react";
 import PageHeader from "../../components/PageHeader";
 import ReservationItem, { Reservation } from "../../components/ReservationItem";
-import api from "../../services/api";
+// import api from "../../services/api";
+import { supabase } from "../../services/supabase";
 import loading2 from "../../assets/images/loading2.gif";
 
 import "./styles.css";
@@ -11,21 +13,82 @@ function ReservationList() {
   const [loading, setLoading] = useState(true);
 
   // Whenever the date changes this function searchs for Vehicles avaible on the DB
+  // useEffect(() => {
+  //   api.get("reservations").then((response) => {
+  //     setLoading(true);
+  //     setReservationsList(response.data);
+  //     setLoading(false);
+  //   });
+  // }, []);
+
   useEffect(() => {
-    api.get("reservations").then((response) => {
+    async function loadReservations() {
       setLoading(true);
-      setReservationsList(response.data);
+
+      const { data, error } = await supabase.from("reservations").select(`
+          id,
+          date,
+          staff,
+          created_at,
+          vehicle_id,
+          period,
+          vehicles (
+            name,
+            avatar,
+            bio
+          )
+        `);
+
+      if (error) {
+        console.error(error);
+        setReservationsList([]);
+        setLoading(false);
+        return;
+      }
+
+      const formattedReservations = (data ?? []).map((reservation: any) => ({
+        id: reservation.id,
+        date: reservation.date,
+        staff: reservation.staff,
+        created_at: reservation.created_at,
+        vehicle_id: reservation.vehicle_id,
+        period: reservation.period,
+        name: reservation.vehicles?.name,
+        avatar: reservation.vehicles?.avatar,
+        bio: reservation.vehicles?.bio,
+      }));
+
+      setReservationsList(formattedReservations);
       setLoading(false);
-    });
+    }
+
+    loadReservations();
   }, []);
 
-  const deleteReservation = (id: number) => {
+  // const deleteReservation = (id: number) => {
+  //   setLoading(true);
+  //   api.delete(`reservations/${id}`).then(() => {
+  //     const updatedReservations = reservationsList.filter((reservation) => reservation.id !== id);
+  //     setReservationsList(updatedReservations);
+  //     setLoading(false);
+  //   });
+  // };
+
+  const deleteReservation = async (id: number) => {
     setLoading(true);
-    api.delete(`reservations/${id}`).then(() => {
-      const updatedReservations = reservationsList.filter((reservation) => reservation.id !== id);
-      setReservationsList(updatedReservations);
+
+    const { error } = await supabase.from("reservations").delete().eq("id", id);
+
+    if (error) {
+      alert("Error deleting reservation: " + error.message);
       setLoading(false);
-    });
+      return;
+    }
+
+    const updatedReservations = reservationsList.filter((reservation) => reservation.id !== id);
+
+    setReservationsList(updatedReservations);
+    setLoading(false);
   };
 
   return (

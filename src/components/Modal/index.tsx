@@ -1,3 +1,4 @@
+// forage-trucks/src/components/Modal/index.tsx
 import React, { ReactNode } from "react";
 
 import "./styles.css";

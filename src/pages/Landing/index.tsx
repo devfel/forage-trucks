@@ -1,3 +1,4 @@
+// forage-trucks/src/pages/Landing/index.tsx
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import loading2 from "../../assets/images/loading2.gif";
@@ -7,19 +8,39 @@ import studyIcon from "../../assets/images/icons/study.svg";
 import pickupIcon from "../../assets/images/icons/pickup.svg";
 import purpleHeartIcon from "../../assets/images/icons/purple-heart.svg";
 import "./styles.css";
-import api from "../../services/api";
+// import api from "../../services/api";
+import { supabase } from "../../services/supabase";
 
 function Landing() {
   const [totalReservations, setTotalReservations] = useState(0);
   const [loading, setLoading] = useState(true);
 
+  // useEffect(() => {
+  //   api.get("totalReservations").then((response) => {
+  //     setLoading(true);
+  //     const total = response.data;
+  //     setTotalReservations(total);
+  //     setLoading(false);
+  //   });
+  // }, []);
+
   useEffect(() => {
-    api.get("totalReservations").then((response) => {
+    async function loadTotalReservations() {
       setLoading(true);
-      const total = response.data;
-      setTotalReservations(total);
+
+      const { count, error } = await supabase.from("reservations").select("*", { count: "exact", head: true });
+
+      if (error) {
+        console.error(error);
+        setTotalReservations(0);
+      } else {
+        setTotalReservations(count ?? 0);
+      }
+
       setLoading(false);
-    });
+    }
+
+    loadTotalReservations();
   }, []);
 
   return (
