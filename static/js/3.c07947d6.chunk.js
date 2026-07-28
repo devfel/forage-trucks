@@ -1,2 +1,0 @@
-(this["webpackJsonpifas-trucks"]=this["webpackJsonpifas-trucks"]||[]).push([[3],{27:function(s,t,e){"use strict";s.exports=function(){throw new Error("ws does not work in the browser. Browser clients must use the native WebSocket object")}}}]);
-//# sourceMappingURL=3.c07947d6.chunk.js.map
